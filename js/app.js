@@ -30,34 +30,50 @@ Enemy.prototype.render = function() {
 var Player = function() {
     this.x = 202;
     this.y = 373.5;
+    this.speedX = 101;
+    this.speedY = 83;
+    this.movement = '';
     this.sprite = 'images/char-boy.png';
 };
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 Player.prototype.update = function() {
-    this.render();
-}
-Player.prototype.handleInput = function(movement) {
-    console.log('adfas');
-    switch (movement) {
+    switch (this.movement) {
         case 'left':
-            this.x -= 101;
+            if(this.x - this.speedX < 0)
+                return;
+            this.x -= this.speedX;
             break;
         case 'up':
-            this.y -= 83;
+            if(this.y - this.speedY < -41.5)
+                return;
+            this.y -= this.speedY;
             break;
         case 'right':
-            this.x += 101;
+            if(this.x + this.speedX > 404)
+                return;
+            this.x += this.speedX;
             break;
         case 'down':
-            this.y += 83;
+            if(this.y + this.speedY > 373.5)
+                return;
+            this.y += this.speedY;
             break;
         default:
             break;
     }
-    this.update();
-    console.log(`x: ${this.x} , y: ${this.y}`);
+
+    if (this.y == -41.5){
+        console.log('finish');
+        this.x = 202;
+        this.y = 373.5;
+    }
+
+    this.movement = '';
+}
+Player.prototype.handleInput = function(mov) {
+        this.movement = mov;
 }
 
 // Now instantiate your objects.
