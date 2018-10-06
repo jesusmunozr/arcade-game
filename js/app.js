@@ -10,9 +10,10 @@ var Enemy = function(row, speed) {
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
     // Detect colision and reset position of the Enemy and Player
-    if (((this.x + 101 - 30 >= player.x && this.x + 101 - 30 < player.x + 101) 
-        || (this.x >= player.x && this.x < player.x + 101)) 
-        && this.y === player.y){
+    // if (((this.x + 101 - 30 >= player.x && this.x + 101 - 30 < player.x + 101) 
+    //     || (this.x >= player.x && this.x < player.x + 101)) 
+    //     && this.y === player.y){
+    if (this.detectCollision()) {
         player.reset();
         this.reset();
     } else { // If there is not collision Enemy continues 
@@ -26,6 +27,9 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+Enemy.prototype.detectCollision = function() {
+    return ((this.x + 101 - 30 >= player.x && this.x + 101 - 30 < player.x + 101) || (this.x >= player.x && this.x < player.x + 101 - 30)) && this.y === player.y;
+}
 // Reset Enemy position
 Enemy.prototype.reset = function() {
     this.x = -101;
