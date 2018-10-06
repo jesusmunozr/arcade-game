@@ -29,11 +29,11 @@ Enemy.prototype.render = function() {
 };
 Enemy.prototype.detectCollision = function() {
     return ((this.x + 101 - 30 >= player.x && this.x + 101 - 30 < player.x + 101) || (this.x >= player.x && this.x < player.x + 101 - 30)) && this.y === player.y;
-}
+};
 // Reset Enemy position
 Enemy.prototype.reset = function() {
     this.x = -101;
-}
+};
 
 // Player class
 var Player = function() {
@@ -48,10 +48,10 @@ var Player = function() {
 Player.prototype.reset = function () {
     this.x = 202;
     this.y = 395;
-}
+};
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 Player.prototype.update = function() {
     switch (this.movement) {
         case 'left':
@@ -85,15 +85,21 @@ Player.prototype.update = function() {
     }
 
     this.movement = '';
-}
+};
 Player.prototype.handleInput = function(mov) {
         this.movement = mov;
-}
+};
 
 // Create player instance
 let player = new Player();
 // Create Enemies instances
-let allEnemies = [new Enemy(1, 250), new Enemy(2, 100), new Enemy(3, 100),new Enemy(1, 300), new Enemy(2, 200), new Enemy(3, 150)];
+let allEnemies = [
+    new Enemy(1, 250), 
+    new Enemy(2, 100), 
+    new Enemy(3, 100),
+    new Enemy(1, 300), 
+    new Enemy(2, 200), 
+    new Enemy(3, 150)];
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
