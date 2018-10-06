@@ -5,7 +5,7 @@
 You have to help the boy to cross the roads without being run over by the bugs and thus be able to reach the water.
 
 ## How to Play
-You have to execute the **index.html** file and enjoy!!
+You have to download or clone this project and then execute **index.html** file and enjoy!!
 
 ## Technical Information
 This game was developed using CSS3, HTML5 and JavaScript.
